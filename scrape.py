@@ -1,6 +1,6 @@
 import setuptools, sys
 sys.modules['distutils'] = setuptools._distutils
-sys.modules['distutils.version'] = setuptools._distutils.version
+import distutils.version
 
 import undetected_chromedriver as uc
 from bs4 import BeautifulSoup
