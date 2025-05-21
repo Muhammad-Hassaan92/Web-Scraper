@@ -1,9 +1,8 @@
 setuptools>=60
 streamlit
 google-generativeai
-selenium
 beautifulsoup4
 lxml
 html5lib
 python_dotenv
-undetected-chromedriver
+requests
