@@ -1,33 +1,14 @@
-import setuptools, sys
-sys.modules['distutils'] = setuptools._distutils
-import distutils.version
-
-import undetected_chromedriver as uc
+import requests
 from bs4 import BeautifulSoup
-import time
 
 def scrape_website(url):
-    print("Launching stealth Chrome...")
-
-    options = uc.ChromeOptions()
-    options.headless = True
-    options.add_argument("--no-sandbox")
-    options.add_argument("--disable-dev-shm-usage")
-    options.add_argument("--disable-blink-features=AutomationControlled")
-    options.add_argument("--disable-infobars")
-    options.add_argument("--start-maximized")
-
-    driver = uc.Chrome(options=options)
-
-    try:
-        driver.get(url)
-        print(f"Loaded {url}...")
-        time.sleep(2)
-        html = driver.page_source
-        return html
-    finally:
-        print("Closing Chrome...")
-        driver.quit()
+    print(f"Sending GET request to {url}...")
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36"
+    }
+    response = requests.get(url, headers=headers)
+    response.raise_for_status()
+    return response.text
 
 def extract_body_content(html):
     soup = BeautifulSoup(html, 'html.parser')
