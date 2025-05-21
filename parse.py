@@ -7,9 +7,10 @@ model = genai.GenerativeModel("gemini-2.0-flash-lite")
 template = (
     "You are tasked with extracting specific information from the following text content: {dom_content}. "
     "Please follow these instructions carefully: \n\n"
+    "VERY IMPORTANT: Answer in a professional way, use bullets or tables if needed. never give continuous direct sentences no matter what."
     "1. **Extract Information:** Only extract the information that directly matches the provided description: {parse_description}. "
     "2. **No Extra Content:** Do not include any additional text, comments, or explanations in your response. "
-    "3. **Empty Response:** If no information matches the description, return an empty string (''). "
+    "3. **Empty Response:** If no information matches the description, return 'Couldn't find relavant information.' "
     "4. **Direct Data Only:** Your output should contain only the data that is explicitly requested, with no other text."
 )
 
